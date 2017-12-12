@@ -24,13 +24,20 @@ const createDB = () => {
 
 const useDB = () => sequelize.query(`USE ${process.env.DB_NAME}`);
 
-db.User.sync({ force: true })
-  .then(db.Address.sync({ force: true }))
-  .then(db.Payment.sync({ force: true }))
-  .then(db.UserAddress.sync({ force: true }))
-  .then(db.UserPayment.sync({ force: true }))
+db.User.sync()
+  .then(db.Address.sync())
+  .then(db.Payment.sync())
+  .then(db.UserAddress.sync())
+  .then(db.UserPayment.sync())
   .catch((err) => {
     throw err;
   });
 
-module.exports = sequelize;
+module.exports = {
+  sequelize,
+  User: db.User,
+  Address: db.Address,
+  Payment: db.Payment,
+  UserAddress: db.UserAddress,
+  UserPayment: db.UserPayment,
+};

@@ -25,9 +25,21 @@ module.exports = (sequelize) => {
     cvv: { type: Sequelize.INTEGER },
   }, { underscored: true, timestamps: false });
 
-  const UserAddress = sequelize.define('userAddress', {}, { underscored: true, timestamps: false });
+  const UserAddress = sequelize.define('userAddress', {}, {
+    indexes: [{
+      fields: ['user_id', 'address_id'],
+    }],
+    underscored: true,
+    timestamps: false,
+  });
 
-  const UserPayment = sequelize.define('userPayment', {}, { underscored: true, timestamps: false });
+  const UserPayment = sequelize.define('userPayment', {}, {
+    indexes: [{
+      fields: ['user_id', 'payment_id'],
+    }],
+    underscored: true,
+    timestamps: false,
+  });
 
   User.belongsToMany(Address, { through: 'userAddress', foreignKey: 'user_id' });
   Address.belongsToMany(User, { through: 'userAddress', foreignKey: 'address_id' });
