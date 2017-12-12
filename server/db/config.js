@@ -8,18 +8,16 @@ module.exports = (sequelize) => {
   }, { underscored: true, timestamps: false });
 
   const Address = sequelize.define('address', {
-    street_number: { type: Sequelize.INTEGER },
     street_address: { type: Sequelize.STRING },
     city: { type: Sequelize.STRING },
     state: { type: Sequelize.STRING },
-    zipcode: { type: Sequelize.INTEGER },
-    longitude: { type: Sequelize.DECIMAL },
-    latitude: { type: Sequelize.DECIMAL },
+    zipcode: { type: Sequelize.STRING },
+    longitude: { type: Sequelize.FLOAT },
+    latitude: { type: Sequelize.FLOAT },
   }, { underscored: true, timestamps: false });
 
   const Payment = sequelize.define('payment', {
-    name_on_card: { type: Sequelize.STRING },
-    card_number: { type: Sequelize.INTEGER, unique: true },
+    card_number: { type: Sequelize.BIGINT },
     card_type: { type: Sequelize.STRING },
     exp_date: { type: Sequelize.INTEGER },
     cvv: { type: Sequelize.INTEGER },
