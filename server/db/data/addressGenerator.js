@@ -13,6 +13,7 @@ const addressGenerator = () => {
   return { streetAddress, city, state, zipCode, longitude, latitude };
 };
 
+//Generate 1 million random addresses
 const loops = [];
 for (let i = 0; i < 100; i++) {
   loops.push(i);

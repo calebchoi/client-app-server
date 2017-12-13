@@ -15,6 +15,7 @@ const userGenerator = () => {
   return { firstName, lastName, email };
 };
 
+// generate 1 million random users
 const loops = [];
 for (let i = 0; i < 20; i++) {
   loops.push(i);
