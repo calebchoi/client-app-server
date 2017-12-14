@@ -1,3 +1,4 @@
 const userDB = require('./user/index');
+const inventoryCartDB = require('./nosql/index');
 
-module.exports = userDB;
+module.exports = { userDB, inventoryCartDB };

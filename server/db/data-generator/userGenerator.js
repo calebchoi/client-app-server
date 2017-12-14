@@ -1,4 +1,4 @@
-const db = require('../index');
+const db = require('../index').userDB;
 const Promise = require('bluebird');
 const faker = require('faker');
 
