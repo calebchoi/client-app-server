@@ -7,7 +7,7 @@ const createItemType =
 const createCartTable =
   `CREATE TABLE IF NOT EXISTS cart (
     user_id int PRIMARY KEY,
-    item frozen<item>,
+    item list<frozen<item>>,
     total_price double
   )`;
 
