@@ -49,34 +49,34 @@ const addressGenerator = () => {
 
 // Generate 1 million random addresses
 const loops = [];
-for (let i = 0; i < 1000000; i++) {
+for (let i = 0; i < 500; i++) {
   loops.push(i);
 }
 
-let counter = 1; 
+// let counter = 1; 
 Promise.each(loops, () => {
-  counter++;
-  const address = addressGenerator();
-  return elastic.addDocument([address.streetAddress, address.city, address.state, address.zipCode, address.longitude, address.latitude])
-    .then(() => {
-      console.log('inserting into elastic', counter);
+  // counter++;
+  // const address = addressGenerator();
+  // return elastic.addDocument([address.streetAddress, address.city, address.state, address.zipCode, address.longitude, address.latitude])
+  //   .then(() => {
+  //     console.log('inserting into elastic', counter);
+  //   });
+  const addresses = [];
+
+  for (let i = 0; i < 10000; i++) {
+    const address = addressGenerator();
+    addresses.push({
+      street_address: address.streetAddress,
+      city: address.city,
+      state: address.state,
+      zipcode: address.zipCode,
+      longitude: address.longitude,
+      latitude: address.latitude,
     });
-  // const addresses = [];
+  }
 
-  // for (let i = 0; i < 10000; i++) {
-  //   const address = addressGenerator();
-  //   addresses.push({
-  //     street_address: address.streetAddress,
-  //     city: address.city,
-  //     state: address.state,
-  //     zipcode: address.zipCode,
-  //     longitude: address.longitude,
-  //     latitude: address.latitude,
-  //   });
-  // }
-
-  // return db.Address.bulkCreate(addresses)
-  //   .catch((err) => {
-  //     throw err;
-  //   });
+  return db.Address.bulkCreate(addresses)
+    .catch((err) => {
+      throw err;
+    });
 });

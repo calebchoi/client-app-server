@@ -50,15 +50,15 @@ setTimeout(() => {
     return cartGenerator()
       .then((cart) => {
         const totalPrice = JSON.parse(cart.totalPrice.toFixed(2));
-        return elastic.addDocument([userID, cart.items, totalPrice, cart.items.length])
-          .then((result) => {
-            console.log(result);
-          })
-          .catch((err) => {
-            throw err;
-          });
-        // const query = 'INSERT INTO cart (user_id, item, total_price) values (?, ?, ?)';
-        // return client.execute(query, [userID, cart.items, totalPrice], { prepare: true });
+        // return elastic.addDocument([userID, cart.items, totalPrice, cart.items.length])
+        //   .then((result) => {
+        //     console.log(result);
+        //   })
+        //   .catch((err) => {
+        //     throw err;
+        //   });
+        const query = 'INSERT INTO cart (user_id, item, total_price) values (?, ?, ?)';
+        return client.execute(query, [userID, cart.items, totalPrice], { prepare: true });
       });
   });
 }, 1000);

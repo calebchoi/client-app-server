@@ -5,7 +5,7 @@ const elasticClient = new elasticsearch.Client({
   log: 'info',
 });
 
-const indexName = 'address';
+const indexName = 'cart';
 
 const mapCartBody = {
   properties: {
@@ -106,11 +106,11 @@ function addDocument(document) {
     body: addAddressBody(document),
   });
 }
-// deleteIndex();
-initIndex()
-  .then(() => {
-    return initMapping();
-  });
+deleteIndex();
+// initIndex()
+//   .then(() => {
+//     return initMapping();
+//   });
 
 
 module.exports = {

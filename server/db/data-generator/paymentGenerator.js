@@ -14,7 +14,7 @@ const paymentGenerator = () => {
 
 // generate 1 million random credit cards
 const loops = [];
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 1000; i++) {
   loops.push(i);
 }
 

@@ -10,14 +10,14 @@ const emails = ['gmail.com', 'yahoo.com', 'hotmail.com',
 const userGenerator = () => {
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
-  const email = `${firstName}.${lastName}${Math.floor(Math.random() * 100000)}@${emails[Math.floor(Math.random() * 12)]}`;
+  const email = `${firstName}.${lastName}@${emails[Math.floor(Math.random() * 12)]}`;
 
   return { firstName, lastName, email };
 };
 
-// generate 1 million random users
+// generate 5 million random users
 const loops = [];
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 100; i++) {
   loops.push(i);
 }
 
