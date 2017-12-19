@@ -1,7 +1,6 @@
 const db = require('../index').userDB;
 const Promise = require('bluebird');
 const faker = require('faker');
-const elastic = require('../../../elasticsearch/index.js');
 
 const states = [
   'AK', 'AL', 'AR', 'AZ', 'CA',

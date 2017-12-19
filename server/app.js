@@ -1,40 +1,39 @@
 require('dotenv').config();
-const apm = require('elastic-apm-node').start();
-const express = require('express');
-const db = require('./db/index.js');
+require('newrelic');
+// const apm = require('elastic-apm-node').start();
+// const redis = require('redis');
 const bodyParser = require('body-parser');
+const cluster = require('cluster');
+const express = require('express');
+const router = require('./routes');
+const cpuCount = require('os').cpus().length;
 
-const app = express();
+if (cluster.isMaster) {
+  // Create a worker for each CPU
+  for (let i = 0; i < cpuCount; i += 1) {
+    cluster.fork();
+  }
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+  cluster.on('exit', (worker) => {
+    console.log('Worker %d died :(', worker.id);
+    cluster.fork();
+  });
+} else {
+  const app = express();
+  // const client = redis.createClient();
 
-app.get('/', (req, res) => {
-  res.send(200);
-});
+  // client.on('error', (err) => {
+  //   console.log(err);
+  // });
 
-app.get('/user/:userId', (req, res) => {
-  db.userDB.User.find({ where: { id: req.params.userId } })
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      return err;
-    });
-});
+  // app.use(apm.middleware.express());
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use('/', router);
 
-app.get('/user/:userId/address', (req, res) => {
-  db.userDB.UserAddress.find({ where: { user_id: req.params.userId } })
-    .then((result) => {
-      db.userDB.Address.find({ where: { id: result.address_id } })
-        .then((result) => {
-          res.send(result);
-        });
-    });
-});
-// app.post('/user/:userId/order', (req, res) => {
+  const PORT = process.env.PORT || 8080;
 
-// });
-app.use(apm.middleware.express());
-
-module.exports = app;
+  app.listen(PORT);
+  console.log('Worker %d running!', cluster.worker.id);
+  // console.log('Listening on port ', PORT);
+}

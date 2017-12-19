@@ -17,7 +17,7 @@ const userGenerator = () => {
 
 // generate 5 million random users
 const loops = [];
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 10; i++) {
   loops.push(i);
 }
 

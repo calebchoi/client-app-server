@@ -1,6 +1,5 @@
 const client = require('../index').inventoryCartDB;
 const Promise = require('bluebird');
-const elastic = require('../../../elasticsearch/index.js');
 
 const itemCount = [1, 2, 3, 4, 5, 6, 7, 8];
 const weight = [0.35, 0.3, 0.15, 0.10, 0.03, 0.03, 0.02, 0.02];
@@ -50,13 +49,6 @@ setTimeout(() => {
     return cartGenerator()
       .then((cart) => {
         const totalPrice = JSON.parse(cart.totalPrice.toFixed(2));
-        // return elastic.addDocument([userID, cart.items, totalPrice, cart.items.length])
-        //   .then((result) => {
-        //     console.log(result);
-        //   })
-        //   .catch((err) => {
-        //     throw err;
-        //   });
         const query = 'INSERT INTO cart (user_id, item, total_price) values (?, ?, ?)';
         return client.execute(query, [userID, cart.items, totalPrice], { prepare: true });
       });
