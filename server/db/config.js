@@ -26,4 +26,19 @@ const createUserTable =
     payment list<frozen<payment>>,
   )`;
 
-module.exports = { createAddressType, createPaymentType, createUserTable };
+const createAddressTable =
+  `CREATE TABLE IF NOT EXISTS address (
+    id int PRIMARY KEY,
+    address list<frozen<address>>,
+    payment list<frozen<payment>>,
+  )`;
+
+// might not need later
+const createPaymentTable =
+  `CREATE TABLE IF NOT EXISTS payment (
+    id int PRIMARY KEY,
+    payment list<frozen<payment>>,
+  )`;
+
+
+module.exports = { createAddressType, createPaymentType, createUserTable, createAddressTable, createPaymentTable };

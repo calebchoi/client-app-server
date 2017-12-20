@@ -16,6 +16,8 @@ client.connect((err) => {
 client.execute(db.createAddressType)
   .then(() => client.execute(db.createPaymentType))
   .then(() => client.execute(db.createUserTable))
+  .then(() => client.execute(db.createAddressTable))
+  .then(() => client.execute(db.createPaymentTable))
   .catch((err) => {
     console.log(err);
   });

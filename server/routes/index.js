@@ -1,21 +1,18 @@
 const router = require('express').Router();
-const address = require('../controllers/address');
+const addressPayment = require('../controllers/addressPayment');
 const user = require('../controllers/user');
-const payment = require('../controllers/payment');
 
-// user route
 router.get('/user/:userId', user.get);
 
-// payment route
-router.get('/user/:userId/payment', payment.get);
-
 // address route
-router.get('/user/:userId/address', address.get);
+router.get('/user/:userId/addressPayment', addressPayment.get);
 
 // user update cart route
-router.post('/user/:userId/cart')
+router.post('/user/:userId/cart');
 
-// user checkout route
-router.post('/user/:userId/checkout')
+// user shipping route
+router.post('/user/:userId/shipping');
+
+router.post('/user/:userId/submitOrder');
 
 module.exports = router;
