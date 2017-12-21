@@ -1,5 +1,5 @@
 require('dotenv').config();
-require('newrelic');
+// require('newrelic');
 // const apm = require('elastic-apm-node').start();
 // const redis = require('redis');
 const bodyParser = require('body-parser');
