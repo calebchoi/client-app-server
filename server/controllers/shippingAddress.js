@@ -33,7 +33,7 @@ module.exports = {
     // sendToQueue(req, res);
     const params = {
       MessageBody: JSON.stringify(req.body), /* required */
-      QueueUrl: 'cart', /* required */
+      QueueUrl: 'shippingAddress', /* required */
       DelaySeconds: 0,
       MessageAttributes: {
         '<String>': {

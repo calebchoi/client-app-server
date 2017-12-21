@@ -1,25 +1,12 @@
-const cassandra = require('cassandra-driver');
-const db = require('./config');
+const mysql = require('mysql');
 
 require('dotenv').config();
 
-const client = new cassandra.Client({ contactPoints: [process.env.DB_HOST || 'localhost'], keyspace: process.env.DB_NAME || 'atom' });
-
-client.connect((err) => {
-  if (err) {
-    throw err;
-  } else {
-    console.log('Cassandra Connected!');
-  }
+const client = mysql.createConnection({
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'atom',
 });
-
-client.execute(db.createAddressType)
-  .then(() => client.execute(db.createPaymentType))
-  .then(() => client.execute(db.createUserTable))
-  .then(() => client.execute(db.createAddressTable))
-  .then(() => client.execute(db.createPaymentTable))
-  .catch((err) => {
-    console.log(err);
-  });
 
 module.exports = client;

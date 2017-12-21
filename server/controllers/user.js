@@ -2,13 +2,15 @@ const db = require('../db/index');
 
 module.exports = {
   get: (req, res) => {
-    const query = `SELECT firstname, lastname, email FROM user WHERE id = ${req.params.userId}`;
-    db.execute(query)
-      .then((result) => {
-        res.send(result.rows[0]);
-      })
-      .catch((err) => {
-        return err;
-      });
+    const q =
+      `SELECT * FROM users
+      WHERE id = ${req.params.userId}`;
+    db.query(q, (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result);
+      }
+    });
   },
 };
