@@ -2,7 +2,6 @@ const db = require('../db/index');
 
 module.exports = {
   get: (req, res) => {
-
     db.redisClient.hget(req.params.userId, 'payment', (err, reply) => {
       if (!err) {
         if (reply) {
@@ -32,3 +31,4 @@ module.exports = {
     //   });
   },
 };
+
