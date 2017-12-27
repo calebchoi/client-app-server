@@ -1,4 +1,4 @@
-const queue = require('../db/index').queue;
+const db = require('../db/index');
 
 const env = process.env.NODE_ENV;
 
@@ -35,7 +35,7 @@ module.exports = {
     // sendToQueue(req, res);
     const params = {
       MessageBody: JSON.stringify(req.body), /* required */
-      QueueUrl: 'cart', /* required */
+      QueueUrl: 'order', /* required */
       DelaySeconds: 0,
       MessageAttributes: {
         '<String>': {
@@ -46,9 +46,10 @@ module.exports = {
 
     sqs.sendMessage(params, (err, data) => {
       if (err) {
-        res.status(404).send(err);
+        res.status(400).send(err);
       } else {
         res.status(202).send(data);
+        db.redisClient.hdel(req.params.userId, 'incentive');
       }
     });
   },

@@ -2,7 +2,7 @@ const db = require('../db/index');
 
 module.exports = {
   post: (req, res) => {
-    res.status(200).end();
+    res.status(202).end();
     db.redisClient.hget(req.params.userId, 'user', (err, reply) => {
       if (!err) {
         if (!reply) {

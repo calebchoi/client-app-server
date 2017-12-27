@@ -6,9 +6,11 @@ const cart = require('../controllers/cart');
 const shippingAddress = require('../controllers/shippingAddress');
 const login = require('../controllers/login');
 const logout = require('../controllers/logout');
+const order = require('../controllers/order');
+const incentive = require('../controllers/incentive');
 
 router.get('/', (req, res) => {
-  res.status(200).end();
+  res.status(200).send('hello');
 });
 
 // login route
@@ -32,6 +34,10 @@ router.post('/user/:userId/cart', cart.post);
 // user shipping route
 router.post('/user/:userId/shippingAddress', shippingAddress.post);
 
-router.post('/user/:userId/submitOrder');
+// user submit order
+router.post('/user/:userId/order', order.post);
+
+// user incentive route
+router.get('/user/:userId/incentive', incentive.get);
 
 module.exports = router;

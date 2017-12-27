@@ -46,7 +46,7 @@ module.exports = {
       if (err) {
         res.status(400).send(err);
       } else {
-        res.status(200).send(data);
+        res.status(202).send(data);
       }
     });
   },

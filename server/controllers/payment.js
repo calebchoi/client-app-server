@@ -22,13 +22,6 @@ module.exports = {
         }
       }
     });
-    // db.execute(query)
-    //   .then((result) => {
-    //     res.send(result);
-    //   })
-    //   .catch((err) => {
-    //     return err;
-    //   });
   },
 };
 

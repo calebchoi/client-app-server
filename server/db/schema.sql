@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
   last_name varchar(255),
   email varchar(255),
 
-  PRIMARY KEY(id),
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE IF NOT EXISTS addresses (
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS addresses (
   longitude float,
   latitude float,
 
-  PRIMARY KEY(id),
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE IF NOT EXISTS payments (
@@ -30,23 +30,23 @@ CREATE TABLE IF NOT EXISTS payments (
   exp_date int,
   cvv int,
 
-  PRIMARY KEY(id),
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE IF NOT EXISTS userAddresses (
   user_id int NOT NULL,
   address_id int NOT NULL,
 
-  FOREIGN KEY (user_id) REFERENCES (users(id)),
-  FOREIGN KEY (address_id) REFERENCES (addresses(id)),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (address_id) REFERENCES addresses(id)
 );
 
 CREATE TABLE IF NOT EXISTS userPayments (
   user_id int NOT NULL,
-  payments_id int NOT NULL,
+  payment_id int NOT NULL,
 
-  FOREIGN KEY (user_id) REFERENCES (users(id)),
-  FOREIGN KEY (payment_id) REFERENCES (payments(id)),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (payment_id) REFERENCES payments(id)
 );
 
 

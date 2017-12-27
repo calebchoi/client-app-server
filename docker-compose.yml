@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: ./mysql.Dockerfile
+    restart: always
+
+  redis:
+    image: redis
+    environment:
+      - REDIS_IP="172.18.0.3"
+      
+  node:
+    build:
+      context: .
+      dockerfile: ./node.Dockerfile
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+      - redis
+    command: ["npm", "start"]
