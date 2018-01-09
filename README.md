@@ -1,35 +1,23 @@
-# Project Name
+# ATOM: Client App Server
 
-The project description
+Client app server of a system designed to emulate Amazon's system to answer the business question of whether prime customers would choose standard shipping with incentives over prime shipping on a daily basis.
 
-## Roadmap
+## Architecture Diagram
 
-View the project roadmap [here](LINK_TO_DOC)
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
-
-# Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
+![alt text](https://ibb.co/dtY2rm)
 
 ## Usage
 
-> Some usage instructions
+> npm start (to run the production-level code)
 
-## Requirements
+## Tech Stack
 
-- Node 6.9.x
-- Redis 3.2.x
-- Postgresql 9.6.x
-- etc
+- Node/Express
+- Redis
+- MySQL
+- AWS EC2
 
-## Other Information
+## Load Testing Tools
 
-(TODO: fill this out with details about your project. Suggested ideas: architecture diagram, schema, and any other details from your app plan that sound interesting.)
-
+- Apache Jmeter
+- NewRelic (visualization)
