@@ -14,22 +14,6 @@ if (!env || env === 'development') {
 
 const sqs = new AWS.SQS();
 
-// async function sendToQueue(req, res) {
-//   const params = {
-//     MessageBody: JSON.stringify(req.body), /* required */
-//     QueueUrl: 'queue', /* required */
-//     DelaySeconds: 0,
-//     MessageAttributes: {
-//       '<String>': {
-//         DataType: 'application/json',
-//       },
-//     },
-//   };
-
-//   const result = await sqs.sendMessage(params);
-//   res.status(200).send(result);
-// }
-
 module.exports = {
   post: (req, res) => {
     // sendToQueue(req, res);

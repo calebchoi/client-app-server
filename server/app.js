@@ -1,7 +1,6 @@
 require('dotenv').config();
 require('newrelic');
-// const apm = require('elastic-apm-node').start();
-// const redis = require('redis');
+
 const bodyParser = require('body-parser');
 const cluster = require('cluster');
 const express = require('express');
@@ -20,13 +19,7 @@ if (cluster.isMaster) {
   });
 } else {
   const app = express();
-  // const client = redis.createClient();
 
-  // client.on('error', (err) => {
-  //   console.log(err);
-  // });
-
-  // app.use(apm.middleware.express());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use('/', router);
@@ -35,5 +28,4 @@ if (cluster.isMaster) {
 
   app.listen(PORT);
   console.log('Worker %d running!', cluster.worker.id);
-  // console.log('Listening on port ', PORT);
 }

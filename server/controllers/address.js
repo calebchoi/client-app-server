@@ -1,14 +1,7 @@
 const db = require('../db/index');
 
-// async function findAddressPayment(req, res) {
-//   const query = `SELECT * FROM address WHERE id = ${req.params.userId}`;
-//   const result = await db.execute(query);
-//   res.send(result.rows[0]);
-// }
-
 module.exports = {
   get: (req, res) => {
-    // findAddressPayment(req, res);
     db.redisClient.hget(req.params.userId, 'address', (err, reply) => {
       if (!err) {
         if (reply) {
