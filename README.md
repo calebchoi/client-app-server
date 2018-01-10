@@ -4,7 +4,7 @@ Client app server of a system designed to emulate Amazon's system to answer the 
 
 ## Architecture Diagram
 
-Click Here ![a link](https://ibb.co/dtY2rm)
+Click Here https://ibb.co/dtY2rm
 
 ## Usage
 
